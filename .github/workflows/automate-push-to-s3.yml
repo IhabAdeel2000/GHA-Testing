@@ -40,4 +40,4 @@ jobs:
     runs-on: ${{needs.setup.outputs.runner}}
     steps:
       - run: echo "Environment ${{needs.setup.outputs.appEnv}}"
-      - run: echo "Runner ${{github.job.runs-on}}"
+      - run: echo "Runner ${{runner.name}}"
