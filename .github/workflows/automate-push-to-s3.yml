@@ -18,25 +18,26 @@ jobs:
     runs-on: ubuntu-latest
     outputs: 
       runner: ${{steps.step1.outputs.runner}}
-      env: ${{steps.step1.outputs.env}}
+      appEnv: ${{steps.step1.outputs.appEnv}}
     steps:
       - name: Check branch
-      id: step1
-      run: |
-        if[${{github.ref_name}} == 'master']; then
-          echo "::set-output name=runner::ubuntu-latest"
-          echo "::set-output name=env::devl"
-        elif [${{github.ref_name}} == 'cert']; then
-          echo "::set-output name=runner::windows-latest"
-          echo "::set-output name=env::cert"
-        else
-          echo "::set-output name=runner::windows-2019"
-          echo "::set-output name=env::prod"
-        fi
+        id: step1
+        shell: bash
+        run: |
+          if [ ${{github.ref_name}} = "master" ]; then
+            echo "::set-output name=runner::ubuntu-latest"
+            echo "::set-output name=appEnv::devl"
+          elif [ ${{github.ref_name}} = "cert" ]; then
+            echo "::set-output name=runner::windows-latest"
+            echo "::set-output name=appEnv::cert"
+          else
+            echo "::set-output name=runner::windows-2019"
+            echose "::set-output  name=appEnv::prod"
+          fi
 
   pushToS3:
     needs: [setup]
     runs-on: ${{needs.setup.outputs.runner}}
     steps:
-      - run: echo "Environment ${{needs.setup.outputs.env}}"
-      - run: echo "Runner ${{github.jobs.pushToS3.runs-on}}"
+      - run: echo "Environment ${{needs.setup.outputs.appEnv}}"
+      - run: echo "Runner ${{github.job.runs-on}}"
