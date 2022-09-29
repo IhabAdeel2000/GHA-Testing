@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs: 
       runner: ${{steps.step1.outputs.runner}}
-      env: ${{setps.step1.outputs.env}}
+      env: ${{steps.step1.outputs.env}}
     steps:
       - name: Check branch
       id: step1

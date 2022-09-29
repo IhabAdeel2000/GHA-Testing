@@ -1,6 +1,6 @@
 name: Push to S3
 on:
-  wokrflow_dispatch:
+  workflow_dispatch:
     inputs:
       Env: 
         description: 'Select Env'
