@@ -22,6 +22,7 @@ jobs:
     steps:
       - name: Check branch
         id: step1
+        shell: bash
         run: |
           if[${{github.ref_name}} = 'master'] then
             echo "::set-output name=runner::ubuntu-latest name=appEnv::devl"
