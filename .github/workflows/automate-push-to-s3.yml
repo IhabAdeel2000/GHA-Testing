@@ -1,0 +1,42 @@
+name: Automated Push to S3
+on: 
+  push:
+    branches:
+      - 'master'
+      - 'cert'
+      - 'prod'
+    paths: 
+      - 'scripts/productdata/**.csv'
+      - 'scripts/productdata/**.txt'
+jobs:
+  verifyingTheBranch:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Workflow triggered from ${{github.ref_name}} branch"
+  
+  setup:
+    runs-on: ubuntu-latest
+    outputs: 
+      runner: ${{steps.step1.outputs.runner}}
+      env: ${{setps.step1.outputs.env}}
+    steps:
+      - name: Check branch
+      id: step1
+      run: |
+        if[${{github.ref_name}} == 'master']; then
+          echo "::set-output name=runner::ubuntu-latest"
+          echo "::set-output name=env::devl"
+        elif [${{github.ref_name}} == 'cert']; then
+          echo "::set-output name=runner::windows-latest"
+          echo "::set-output name=env::cert"
+        else
+          echo "::set-output name=runner::windows-2019"
+          echo "::set-output name=env::prod"
+        fi
+
+  pushToS3:
+    needs: [setup]
+    runs-on: ${{needs.setup.outputs.runner}}
+    steps:
+      - run: echo "Environment ${{needs.setup.outputs.env}}"
+      - run: echo "Runner ${{github.jobs.pushToS3.runs-on}}"

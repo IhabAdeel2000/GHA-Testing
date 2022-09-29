@@ -1,0 +1,28 @@
+name: Push to S3
+on:
+  wokrflow_dispatch:
+    inputs:
+      Env: 
+        description: 'Select Env'
+        required: true
+        default: 'devl'
+        type: choice
+        options:
+          - devl
+          - cert
+          - prod
+      Runner:
+        description: 'Select GHA Runner'
+        required: true
+        default: 'ubuntu-latest'
+        type: choice
+        options:
+          - ubuntu-latest
+          - ubuntu-latest
+          - ubuntu-latest
+jobs:
+  Display information:
+    runs-on: ${{github.event.inputs.Runner}}
+    steps:
+      - run: echo "Environment ${{github.event.inputs.Env}}"
+      - run: echo "Runner ${{github.event.inputs.Runner}}"
