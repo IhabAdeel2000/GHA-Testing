@@ -24,9 +24,9 @@ jobs:
         id: step1
         shell: bash
         run: |
-          if[${{github.ref_name}} = 'master'] then
+          if[${{github.ref_name}} = "master"] then
             echo "::set-output name=runner::ubuntu-latest name=appEnv::devl"
-          elif [${{github.ref_name}} = 'cert'] then
+          elif [${{github.ref_name}} = "cert"] then
             echo "::set-output name=runner::windows-latest name=appEnv::cert"
           else
             echo "::set-output name=runner::windows-2019 name=appEnv::prod"
