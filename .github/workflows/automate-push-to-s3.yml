@@ -24,14 +24,11 @@ jobs:
       id: step1
       run: |
         if[${{github.ref_name}} == 'master']; then
-          echo "::set-output name=runner::ubuntu-latest"
-          echo "::set-output name=appEnv::devl"
+          echo "::set-output name=runner::ubuntu-latest name=appEnv::devl"
         elif [${{github.ref_name}} == 'cert']; then
-          echo "::set-output name=runner::windows-latest"
-          echo "::set-output name=appEnv::cert"
+          echo "::set-output name=runner::windows-latest name=appEnv::cert"
         else
-          echo "::set-output name=runner::windows-2019"
-          echo "::set-output name=appEnv::prod"
+          echo "::set-output name=runner::windows-2019 name=appEnv::prod"
         fi
 
   pushToS3:
