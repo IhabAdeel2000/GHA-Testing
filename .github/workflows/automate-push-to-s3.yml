@@ -36,9 +36,8 @@ jobs:
           fi
 
   pushToS3:
-    id: pushToS3
     needs: [setup]
     runs-on: ${{needs.setup.outputs.runner}}
     steps:
       - run: echo "Environment ${{needs.setup.outputs.appEnv}}"
-      - run: echo "Runner ${{github.jobs.pushToS3.runs-on}}"
+      - run: echo "Runner ${{github.job.runs-on}}"
