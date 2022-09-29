@@ -36,6 +36,7 @@ jobs:
           fi
 
   pushToS3:
+    id: pushToS3
     needs: [setup]
     runs-on: ${{needs.setup.outputs.runner}}
     steps:
