@@ -20,9 +20,17 @@ on:
           - ubuntu-latest
           - windows-latest
           - windows-2019
+  workflow_call:
+    inputs:
+      Env: 
+        required: true
+        type: string
+      Runner:
+        required: true
+        type: string
 jobs:
   build:
-    runs-on: ${{github.event.inputs.Runner}}
+    runs-on: ${{inputs.Runner}}
     steps:
-      - run: echo "Environment - ${{github.event.inputs.Env}}"
+      - run: echo "Environment - ${{inputs.Env}}"
       - run: echo "Runner OS - ${{runner.os}}"
