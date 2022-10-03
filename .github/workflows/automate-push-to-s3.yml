@@ -39,5 +39,6 @@ jobs:
     needs: [setup]
     runs-on: ${{needs.setup.outputs.runner}}
     steps:
-      - run: echo "Environment ${{needs.setup.outputs.appEnv}}"
-      - run: echo "Runner ${{runner.name}}"
+      - run: echo "Environment - ${{needs.setup.outputs.appEnv}}"
+      - run: echo "Runner OS -  ${{runner.os}}"
+      - run: echo "Runner Arch - ${{runner.arch}}"
