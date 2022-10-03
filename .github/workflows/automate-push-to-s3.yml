@@ -10,9 +10,6 @@ on:
       - 'scripts/productdata/**.txt'
 jobs:
   verifyingTheBranch:
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo "Workflow triggered from ${{github.ref_name}} branch"
   
   setup:
     runs-on: ubuntu-latest
@@ -24,6 +21,7 @@ jobs:
         id: step1
         shell: bash
         run: |
+          echo "Running on ${{github.ref_name}} branch"
           if [ ${{github.ref_name}} = "master" ]; then
             echo "::set-output name=runner::ubuntu-latest"
             echo "::set-output name=appEnv::devl"
@@ -41,4 +39,3 @@ jobs:
     steps:
       - run: echo "Environment - ${{needs.setup.outputs.appEnv}}"
       - run: echo "Runner OS -  ${{runner.os}}"
-      - run: echo "Runner Arch - ${{runner.arch}}"

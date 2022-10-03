@@ -26,4 +26,3 @@ jobs:
     steps:
       - run: echo "Environment - ${{github.event.inputs.Env}}"
       - run: echo "Runner OS - ${{runner.os}}"
-      - run: echo "Runner Arch - ${{runner.arch}}"
