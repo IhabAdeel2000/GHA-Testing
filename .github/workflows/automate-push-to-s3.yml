@@ -9,8 +9,6 @@ on:
       - 'scripts/productdata/**.csv'
       - 'scripts/productdata/**.txt'
 jobs:
-  verifyingTheBranch:
-  
   setup:
     runs-on: ubuntu-latest
     outputs: 
