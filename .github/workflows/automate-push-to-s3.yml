@@ -28,12 +28,12 @@ jobs:
             echo "::set-output name=appEnv::cert"
           else
             echo "::set-output name=runner::windows-2019"
-            echose "::set-output  name=appEnv::prod"
+            echo "::set-output name=appEnv::prod"
           fi
 
   pushToS3:
     needs: [setup]
-    runs-on: ${{needs.setup.outputs.runner}}
-    steps:
-      - run: echo "Environment - ${{needs.setup.outputs.appEnv}}"
-      - run: echo "Runner OS -  ${{runner.os}}"
+    uses: ${{github.repository}}/.github/workflows/push-to-S3.yml
+    with:
+      Env: ${{needs.setup.outputs.appEnv}}
+      Runner: ${{needs.setup.outputs.runner}}
