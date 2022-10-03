@@ -30,7 +30,7 @@ on:
         type: string
 jobs:
   build:
-    runs-on: ${{github.events.inputs.Runner}}
+    runs-on: ${{github.event.inputs.Runner}}
     steps:
-      - run: echo "Environment - ${{github.events.inputs.Env}}"
+      - run: echo "Environment - ${{github.event.inputs.Env}}"
       - run: echo "Runner OS - ${{runner.os}}"
