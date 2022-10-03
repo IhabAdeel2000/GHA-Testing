@@ -33,7 +33,7 @@ jobs:
 
   pushToS3:
     needs: [setup]
-    uses: ${{github.repository}}/.github/workflows/push-to-S3.yml@main
+    uses: ./.github/workflows/push-to-S3.yml@main
     with:
       Env: ${{needs.setup.outputs.appEnv}}
       Runner: ${{needs.setup.outputs.runner}}
