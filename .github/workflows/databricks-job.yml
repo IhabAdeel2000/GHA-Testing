@@ -32,15 +32,16 @@ on:
           - windows-2019
 
   workflow_call:
-    logLevel:
-      required: true
-      type: string
-    Env: 
-      required: true
-      type: string
-    Runner:
-      required: true
-      type: string
+    inputs:
+      logLevel:
+        required: true
+        type: string
+      Env: 
+        required: true
+        type: string
+      Runner:
+        required: true
+        type: string
 
 jobs:
   build:
