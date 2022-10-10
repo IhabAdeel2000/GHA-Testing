@@ -1,13 +1,17 @@
-name: Automated Push to S3
+name: Automated Build jar
+
 on: 
   push:
     branches:
       - 'master'
       - 'cert'
       - 'prod'
+      - 'test'
     paths: 
-      - 'scripts/productdata/**.csv'
-      - 'scripts/productdata/**.txt'
+      - 'src/main/**'
+      - 'project/**'
+      - 'build.sbt'
+
 jobs:
   setup:
     runs-on: ubuntu-latest
@@ -15,7 +19,7 @@ jobs:
       runner: ${{steps.step1.outputs.runner}}
       appEnv: ${{steps.step1.outputs.appEnv}}
     steps:
-      - name: Check branch
+      - name: Set Env and Runner
         id: step1
         shell: bash
         run: |
@@ -29,16 +33,16 @@ jobs:
             echo "::set-output name=runner::windows-2019"
             echo "::set-output name=appEnv::prod"
           fi
-
-  pushToS3:
+  buildJar:
     needs: [setup]
-    uses: ./.github/workflows/push-to-S3.yml
+    uses: ./.github/workflows/build-jar.yml
     with:
+      logLevel: info
       Env: ${{needs.setup.outputs.appEnv}}
       Runner: ${{needs.setup.outputs.runner}}
 
   runDatabricksJob:
-    needs: [setup, pushToS3]
+    needs: [setup, buildJar]
     uses: ./.github/workflows/databricks-job.yml
     with:
       logLevel: info
