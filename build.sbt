@@ -1,1 +1,1 @@
-Edited build.sbt from master
+Edited build.sbt in master
