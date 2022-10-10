@@ -1,0 +1,52 @@
+name: Build Market Share Jar
+
+on:
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'
+        required: true
+        default: 'warning'
+        type: choice
+        options:
+          - info
+          - warning
+          - debug
+      Env:
+        description: 'Select Env'
+        required: true
+        default: 'devl'
+        type: choice
+        options:
+          - devl
+          - cert
+          - prod
+      Runner:
+        description: 'Select GHA Runner'
+        required: true
+        default: 'ubuntu-latest'
+        type: choice
+        options:
+          - ubuntu-latest
+          - windows-latest
+          - windows-2019
+
+  workflow_call:
+    inputs:
+      logLevel:
+        required: true
+        type: string
+      Env: 
+        required: true
+        type: string
+      Runner:
+        required: true
+        type: string
+
+jobs:
+  build:
+    runs-on: ${{inputs.Runner}}
+    steps:
+      - run: echo "Environment - ${{inputs.Env}}"
+      - run: echo "Runner OS - ${{runner.os}}"
+      - run: echo "Log Level - ${{inputs.logLevel}}"
