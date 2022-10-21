@@ -28,6 +28,7 @@ jobs:
   createBucket:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
       - shell: bash
         run: |
           cd source
