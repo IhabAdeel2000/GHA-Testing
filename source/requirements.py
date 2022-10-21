@@ -1,0 +1,5 @@
+simplejson
+boto
+boto3
+requests
+argparse

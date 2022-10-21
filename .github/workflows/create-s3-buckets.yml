@@ -1,0 +1,36 @@
+name: Create S3 Bucket
+
+on:
+  workflow_dispatch:
+    inputs:
+      ACCOUNT_NUMBER:
+        description: 'Account Number to provision stack. 541843007032 for devl, 305463345279 for prod.'
+        required: true
+        default: '541843007032'
+        type: choice
+        options: 
+          - '541843007032'
+          - '305463345279'
+
+      ROLE_NAME:
+        required: true
+        default: 'jenkins/appslave-jenkins-cis'
+
+      BUCKET_NAME:
+        description: 'Name of the S3 Bucket'
+        required: true
+
+      REGION:
+        required: true
+        default: 'us-east-1'
+
+jobs:
+  createBucket:
+    runs-on: ubuntu-latest
+    steps:
+      - shell: bash
+        run: |
+          cd source
+          pip install --upgrade --user -r ../requirements.txt
+          python --version
+          python create_bucket.py --account_number ${{ACCOUNT_NUMBER}} --role_name ${{ROLE_NAME}}  --region ${{REGION}} --bucket ${{BUCKET_NAME}}
