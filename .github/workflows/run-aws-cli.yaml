@@ -9,7 +9,7 @@ on:
 
 jobs:
   runCommand:
-    runs-on: deere-ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
       - shell: bash
         run: |
