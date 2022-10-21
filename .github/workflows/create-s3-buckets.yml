@@ -4,13 +4,13 @@ on:
   workflow_dispatch:
     inputs:
       ACCOUNT_NUMBER:
-        description: 'Account Number to provision stack. 541843007032 for devl, 305463345279 for prod.'
+        description: 'Account Number to provision stack. 123456789 for devl, 987654321 for prod.'
         required: true
-        default: '541843007032'
+        default: '123456789'
         type: choice
         options: 
-          - '541843007032'
-          - '305463345279'
+          - '123456789'
+          - '987654321'
 
       ROLE_NAME:
         required: true
