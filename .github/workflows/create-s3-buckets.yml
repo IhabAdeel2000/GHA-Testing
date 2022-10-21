@@ -32,6 +32,6 @@ jobs:
       - shell: bash
         run: |
           cd source
-          pip install --upgrade --user -r ../requirements.txt
+          pip install --upgrade --user -r requirements.txt
           python --version
           python create_bucket.py --account_number ${{inputs.ACCOUNT_NUMBER}} --role_name ${{inputs.ROLE_NAME}}  --region ${{inputs.REGION}} --bucket ${{inputs.BUCKET_NAME}}
