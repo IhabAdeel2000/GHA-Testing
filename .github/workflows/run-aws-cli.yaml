@@ -12,6 +12,6 @@ jobs:
     runs-on: deere-ubuntu-latest
     steps:
       - shell: bash
-      - run: |
+        run: |
           echo ${{inputs.command}}
           $command
