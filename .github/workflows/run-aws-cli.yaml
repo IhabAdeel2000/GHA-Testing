@@ -13,5 +13,5 @@ jobs:
     steps:
       - shell: bash
         run: |
-          echo "Running ${{inputs.command}}"
+          echo "Running \"${{inputs.command}}\" command"
           ${{inputs.command}}
