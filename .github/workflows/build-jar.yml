@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       logLevel:
-        description: |
+        description: |+
           Log level is simply dummy text of the printing
           and 
           typesetting 
