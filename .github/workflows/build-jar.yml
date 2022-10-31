@@ -4,14 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       logLevel:
-        description: |
-          Log level
-          Enter the name of table/view/schema/function to give access.
-          Table          :  <Schema_Name>.<Table_Name>
-          Schema      :  <Schema_Name>
-          View           :  <Schema_Name>.<View_Name>
-          Sequence   :  <Schema_Name>.<Sequence_Name>
-          Function      :  <Schema_Name>.<Function_name()>
+        description: 'Log level'
         required: true
         default: 'warning'
         type: choice
