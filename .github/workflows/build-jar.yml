@@ -6,7 +6,10 @@ on:
       logLevel:
         description: |
           Log level is simply dummy text of the printing
-          and typesetting industry. Lorem Ipsum has been the industrys
+          and 
+          typesetting 
+          industry. Lorem Ipsum 
+          has been the industrys
         required: true
         default: 'warning'
         type: choice
