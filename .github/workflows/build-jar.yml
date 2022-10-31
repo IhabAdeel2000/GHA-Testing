@@ -5,15 +5,13 @@ on:
     inputs:
       logLevel:
         description: |
-          Log level is simply dummy text of the printing
-          
-          and 
-          
-          typesetting 
-          
-          industry. Lorem Ipsum 
-          
-          has been the industrys
+          Log level
+          Enter the name of table/view/schema/function to give access.
+          Table          :  <Schema_Name>.<Table_Name>
+          Schema      :  <Schema_Name>
+          View           :  <Schema_Name>.<View_Name>
+          Sequence   :  <Schema_Name>.<Sequence_Name>
+          Function      :  <Schema_Name>.<Function_name()>
         required: true
         default: 'warning'
         type: choice
